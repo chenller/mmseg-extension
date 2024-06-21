@@ -1,0 +1,37 @@
+Collections:
+- Name: ViT-Adapter
+  License: Apache License 2.0
+  Metadata:
+    Training Data:
+    - ADE20K
+  Paper:
+    Title: None
+    URL: None
+  README: configs/vit_adapter/README.md
+  Frameworks:
+  - PyTorch
+Models:
+- Name: upernet_deit_adapter_base_512_160k_ade20k
+  In Collection: ViT-Adapter
+  Results:
+    Task: Semantic Segmentation
+    Dataset: ADE20K
+    Metrics:
+      mIoU: 0
+      mIoU(ms+flip): 0
+  Config: configs/vit_adapter/upernet_deit_adapter_base_512_160k_ade20k.py
+  Metadata:
+    Training Data: ADE20K
+    Batch Size: 8
+    Architecture:
+    - None
+    - None
+    Training Resources: 4x V100 GPUS
+    Memory (GB): 6.0
+  Weights: https://download.openmmlab.com/mmsegmentation/v0.5/ann/ann_r50-d8_512x1024_40k_cityscapes/ann_r50-d8_512x1024_40k_cityscapes_20200605_095211-049fc292.pth
+  Training log: https://download.openmmlab.com/mmsegmentation/v0.5/ann/ann_r50-d8_512x1024_40k_cityscapes/ann_r50-d8_512x1024_40k_cityscapes_20200605_095211.log.json
+  Paper:
+    Title: Asymmetric Non-local Neural Networks for Semantic Segmentation
+    URL: https://arxiv.org/abs/1908.07678
+  Code: https://github.com/open-mmlab/mmsegmentation/blob/v0.17.0/mmseg/models/decode_heads/ann_head.py#L185
+  Framework: PyTorch
