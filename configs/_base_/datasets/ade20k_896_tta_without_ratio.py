@@ -2,13 +2,13 @@
 dataset_type = 'ADE20KDataset'
 # data_root = 'data/ade/ADEChallengeData2016'
 data_root = '../../../dataset/mmseg/ADEChallengeData2016/'
-crop_size = (512, 512)
+crop_size = (896, 896)
 train_pipeline = [
     dict(type='LoadImageFromFile'),
     dict(type='LoadAnnotations', reduce_zero_label=True),
     dict(
         type='RandomResize',
-        scale=(2048, 512),
+        scale=(3584, 896),
         ratio_range=(0.5, 2.0),
         keep_ratio=True),
     dict(type='RandomCrop', crop_size=crop_size, cat_max_ratio=0.75),
@@ -17,11 +17,11 @@ train_pipeline = [
     dict(type='PackSegInputs')
 ]
 test_pipeline = [
-    dict(type='LoadImageFromFile', _scope_='mmseg'),
-    dict(type='Resize', scale=(2048, 512), keep_ratio=True, _scope_='mmseg'),
+    dict(type='LoadImageFromFile'),
+    dict(type='Resize', scale=(3584, 896), keep_ratio=True),
     # add loading annotation after ``Resize`` because ground truth
     # does not need to do resize data transform
-    dict(type='LoadAnnotations', reduce_zero_label=True, _scope_='mmseg'),
+    dict(type='LoadAnnotations', reduce_zero_label=True),
     dict(type='PackSegInputs', _scope_='mmseg')
 ]
 tta_pipeline = [
@@ -29,11 +29,11 @@ tta_pipeline = [
     dict(
         type='TestTimeAug',
         transforms=[
-            [dict(type='Resize', scale=(2048, 512), keep_ratio=True)],
+            [dict(type='Resize', scale=(3584, 896), keep_ratio=True)],
             [
                 dict(type='RandomFlip', prob=0., direction='horizontal'),
                 dict(type='RandomFlip', prob=1., direction='horizontal')
-            ], [dict(type='LoadAnnotations', _scope_='mmseg')], [dict(type='PackSegInputs', _scope_='mmseg', )]
+            ], [dict(type='LoadAnnotations')], [dict(type='PackSegInputs', _scope_='mmseg')]
         ])
 ]
 train_dataloader = dict(

@@ -1,53 +1,47 @@
 _base_ = [
-    'mmsegext::_base_/datasets/ade20k_512_tta_without_ratio.py',
+    'mmsegext::_base_/datasets/ade20k_896_tta_without_ratio.py',
     'mmseg::_base_/default_runtime.py',
     'mmseg::_base_/schedules/schedule_160k.py'
 ]
-crop_size = (512, 512)
 data_preprocessor = dict(
     type='SegDataPreProcessor',
-    size=crop_size,
+    size=(896, 896),
     mean=[123.675, 116.28, 103.53],
     std=[58.395, 57.12, 57.375],
     bgr_to_rgb=True,
     pad_val=0,
     seg_pad_val=255)
 model = dict(
-
     type='EncoderDecoder',
     data_preprocessor=data_preprocessor,
-    # pretrained=
-    # 'pretrained/L_16-i21k-300ep-lr_0.001-aug_medium1-wd_0.1-do_0.1-sd_0.1--imagenet2012-steps_20k-lr_0.01-res_384.pth',
+    pretrained='open-mmlab://resnet50_v1c',
     backbone=dict(
-        type='ext-ViTAdapter',
-        img_size=384,
-        pretrain_size=384,
-        patch_size=16,
-        embed_dim=1024,
-        depth=24,
-        num_heads=16,
-        mlp_ratio=4,
-        drop_path_rate=0.4,
-        conv_inplane=64,
-        n_points=4,
-        deform_num_heads=16,
-        cffn_ratio=0.25,
-        deform_ratio=0.5,
+        type='ext-InternImage',
+        core_op='DCNv3',
+        channels=512,
+        depths=[2, 2, 48, 4],
+        groups=[16, 32, 64, 128],
+        mlp_ratio=4.0,
+        drop_path_rate=0.5,
+        norm_layer='LN',
+        layer_scale=None,
+        offset_scale=1.0,
+        post_norm=True,
+        dw_kernel_size=5,
+        res_post_norm=False,
+        level2_post_norm=True,
+        level2_post_norm_block_ids=[5, 11, 17, 23, 29, 35, 41, 47],
+        center_feature_scale=True,
         with_cp=True,
-        interaction_indexes=[[0, 5], [6, 11], [12, 17], [18, 23]],
-        window_attn=[
-            False, False, False, False, False, False, False, False, False,
-            False, False, False, False, False, False, False, False, False,
-            False, False, False, False, False, False
-        ],
-        window_size=[
-            None, None, None, None, None, None, None, None, None, None, None,
-            None, None, None, None, None, None, None, None, None, None, None,
-            None, None
-        ]),
+        out_indices=(0, 1, 2, 3),
+        init_cfg=dict(
+            type='Pretrained',
+            checkpoint=
+            'https://huggingface.co/OpenGVLab/InternImage/resolve/main/internimage_g_pretrainto22k_384.pth'
+        )),
     decode_head=dict(
         type='UPerHead',
-        in_channels=[1024, 1024, 1024, 1024],
+        in_channels=[512, 1024, 2048, 4096],
         in_index=[0, 1, 2, 3],
         pool_scales=(1, 2, 3, 6),
         channels=512,
@@ -59,7 +53,7 @@ model = dict(
             type='CrossEntropyLoss', use_sigmoid=False, loss_weight=1.0)),
     auxiliary_head=dict(
         type='FCNHead',
-        in_channels=1024,
+        in_channels=2048,
         in_index=2,
         channels=256,
         num_convs=1,
@@ -71,15 +65,18 @@ model = dict(
         loss_decode=dict(
             type='CrossEntropyLoss', use_sigmoid=False, loss_weight=0.4)),
     train_cfg=dict(),
-    test_cfg=dict(mode='slide', crop_size=(512, 512), stride=(341, 341)))
+    test_cfg=dict(mode='whole'))
 
-optimizer = dict(_delete_=True, type='AdamW', lr=0.00002, betas=(0.9, 0.999), weight_decay=0.01)
+optimizer = dict(_delete_=True, type='AdamW', lr=0.00002, betas=(0.9, 0.999), weight_decay=0.05)
 optim_wrapper = dict(
     type='OptimWrapper',
     optimizer=optimizer,
     clip_grad=None,
-    constructor='ext-LayerDecayOptimizerConstructorViTAdapter',
-    paramwise_cfg=dict(num_layers=24, layer_decay_rate=0.95),
+    constructor='ext-LayerDecayOptimizerConstructor-InternImage',
+    paramwise_cfg=dict(num_layers=56,
+                       layer_decay_rate=0.95,
+                       depths=[2, 2, 48, 4],
+                       offset_lr_scale=1.0),
 )
 # learning policy
 param_scheduler = [

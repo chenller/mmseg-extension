@@ -12,7 +12,6 @@ data_preprocessor = dict(
     pad_val=0,
     seg_pad_val=255)
 model = dict(
-    _delete_=True,
     type='EncoderDecoder',
     data_preprocessor=data_preprocessor,
     # pretrained='pretrained/beit_large_patch16_224_pt22k_ft22k.pth',
@@ -64,3 +63,29 @@ model = dict(
     train_cfg=dict(),
     test_cfg=dict(mode='slide', crop_size=(640, 640), stride=(426, 426))
 )
+
+optimizer = dict(_delete_=True, type='AdamW', lr=0.00002, betas=(0.9, 0.999), weight_decay=0.05)
+optim_wrapper = dict(
+    type='OptimWrapper',
+    optimizer=optimizer,
+    clip_grad=None,
+    constructor='ext-LayerDecayOptimizerConstructorViTAdapter',
+    paramwise_cfg=dict(num_layers=24, layer_decay_rate=0.9),
+)
+# learning policy
+param_scheduler = [
+    # 线性学习率预热调度器
+    dict(type='LinearLR',
+         start_factor=1e-6,
+         by_epoch=False,  # 按迭代更新学习率
+         begin=0,
+         end=1500),  # 预热前 50 次迭代
+    # 主学习率调度器
+    dict(
+        type='PolyLR',
+        eta_min=0,
+        power=1.0,
+        begin=1500,
+        end=160000,
+        by_epoch=False)
+]

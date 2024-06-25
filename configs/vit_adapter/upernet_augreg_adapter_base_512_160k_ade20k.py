@@ -68,3 +68,34 @@ model = dict(
             type='CrossEntropyLoss', use_sigmoid=False, loss_weight=0.4)),
     train_cfg=dict(),
     test_cfg=dict(mode='slide', crop_size=(512, 512), stride=(341, 341)))
+
+optimizer = dict(type='AdamW', lr=0.00002, betas=(0.9, 0.999), weight_decay=0.01)
+optim_wrapper = dict(
+    type='OptimWrapper', optimizer=optimizer, clip_grad=None,
+    paramwise_cfg=dict(
+        custom_keys={
+            'level_embed': dict(decay_mult=0.),
+            'pos_embed': dict(decay_mult=0.),
+            'norm': dict(decay_mult=0.),
+            'bias': dict(decay_mult=0.),
+            'head': dict(lr_mult=10.0),
+        }
+    )
+)
+# learning policy
+param_scheduler = [
+    # 线性学习率预热调度器
+    dict(type='LinearLR',
+         start_factor=1e-6,
+         by_epoch=False,  # 按迭代更新学习率
+         begin=0,
+         end=1500),  # 预热前 50 次迭代
+    # 主学习率调度器
+    dict(
+        type='PolyLR',
+        eta_min=0,
+        power=1.0,
+        begin=1500,
+        end=160000,
+        by_epoch=False)
+]

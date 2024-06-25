@@ -272,6 +272,8 @@ class TIMMVisionTransformer(BaseModule):
             w = p.get('model', None)
             if w is not None:
                 self.load_state_dict(w, strict=False)
+            else:
+                self.load_state_dict(p, strict=False)
 
     def forward_features(self, x):
         x, H, W = self.patch_embed(x)

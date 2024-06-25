@@ -1,78 +1,44 @@
-# mmseg-extension
+# mmsegExtension
 
 [English](README.md) | [简体中文](README_CN.md)
 
-## Introduction
+## Introduction to mmsegExtension
 
-`mmseg-extension` is a comprehensive extension of
-the [MMSegmentation library (version 1.x)](https://github.com/open-mmlab/mmsegmentation/tree/main),
-designed to provide a more versatile and up-to-date framework for semantic segmentation.
-This repository consolidates the latest advancements in semantic segmentation
-by integrating and unifying various models and codes within the MMSegmentation ecosystem.
-Users benefit from a consistent and streamlined training and testing process,
-significantly reducing the learning curve and enhancing productivity.
+`MmsegExtension` is a robust extension toolbox constructed on the widely used `MMSegmentation` framework.
+This toolbox aims to migrate models developed on the `MMSegmentation v0.x` version (like ViT Adapter) to the more
+feature-packed and performance-optimized `MMSegmentation v1.x` version.
+With `mmsegExtension`, you can directly load the pre-trained weights from `mmseg v0.x` from the original repository and
+run and test them seamlessly in the `mmseg v1.x` version.
 
-The main branch works with PyTorch 2.0 or higher (we recommend PyTorch 2.3).
-You can still use PyTorch 1.x.
+**Note:** [MMSegmentation](https://github.com/open-mmlab/mmsegmentation/tree/main) is an open-source semantic
+segmentation toolbox based on PyTorch. It is part of the OpenMMLab project.
 
-## Features and Objectives
+## Key Features
 
-- **MMSegmentation Extension**
+- **Code Organization Aligned with `MMSegmentation v1.x`**
 
-  This repository extends the capabilities of MMSegmentation 1.x,
-  leveraging its robust framework for semantic segmentation tasks.
-
-- **Model Migration**
-
-  Models from MMSegmentation 0.x are migrated to be compatible with MMSegmentation 1.x.
-
-- **Integration of External Codes**
-
-  Codes and models not originally developed with MMSegmentation can be adapted to
-  use MMSegmentation's data loading, training, and validation mechanisms.
-
-- **Model Weights Compatibility**
-
-  Models trained in their original repositories can be used directly for training and inference
-  in mmseg-extension without the need for retraining.
-
-- **Tracking Latest Models**
-
-  The repository stays updated with the latest research and models in semantic segmentation.
+  We will organize the file structure according to the directory structure of the MMSegmentation v1.x codebase.
+  Developers familiar with MMSegmentation v1.x will be able to get started immediately.
 
 - **Minimal Changes**
 
   The Config file names remain the same as in the original repository, making it easy for developers familiar with the
   original repository to get started without much hassle.
 
+- **Extensive Pre-trained Weights**
 
-<details>
-<summary> Addressing Key Issues </summary>
-<br>
-<div>
+  Directly load pre-trained weights trained by the mmseg v0.x version from the original repository and run and test them
+  directly in the mmseg v1.x version.
 
-- **Staying Current with Latest Models**
+## Supported repositories
 
-  mmseg-extension addresses the delay in MMSegmentation's inclusion of the latest models by continuously integrating the newest research.
-
-- **Standardizing Disparate Codebases**
-
-  By providing a unified framework, mmseg-extension solves the problem of inconsistent data loading, training, and
-  validation scripts across different research papers.
-
-- **Utilizing Pre-trained Weights**
-
-  Ensures compatibility with pre-trained weights from various repositories, enabling seamless model integration without
-  the need for retraining.
-
-</div>
-
-</details>
+- [ViT-Adapter](https://github.com/czczup/ViT-Adapter)
+- [ViT-CoMer](https://github.com/Traffic-X/ViT-CoMer)
 
 ### TODO
 
 - [x] Support [ViT-CoMer](https://github.com/Traffic-X/ViT-CoMer) semantic segmentation
-- [x] Support [InternImage](https://github.com/OpenGVLab/InternImage) semantic segmentation
+- [ ] Support [InternImage](https://github.com/OpenGVLab/InternImage) semantic segmentation
 - [x] Support [ViT-Adapter](https://github.com/czczup/ViT-Adapter) semantic segmentation
 
 ## Installation and Usage
@@ -86,14 +52,7 @@ You can still use PyTorch 1.x.
     - [Getting started with MMEngine](https://mmengine.readthedocs.io/en/latest/get_started/15_minutes.html)
     - [Overview of MMSegmentation](https://github.com/open-mmlab/mmsegmentation/blob/main/docs/en/overview.md)
 
-
-## Overview of Model Zoo
-
-- [ViT-Adapter](https://github.com/czczup/ViT-Adapter)
-- [ViT-CoMer](https://github.com/Traffic-X/ViT-CoMer)
-- [InternImage](https://github.com/OpenGVLab/InternImage)
-
-### Completed work   
+## Completed work
 
 <details>
 <summary> Identifier Description </summary>
@@ -187,8 +146,26 @@ You can still use PyTorch 1.x.
 | InternImage-B  |   UperNet   |  512x512   | 50.8 / 51.3  |  128M  | 1185G |               [ckpt](https://huggingface.co/OpenGVLab/InternImage/resolve/main/upernet_internimage_b_512_160k_ade20k.pth) \| [cfg](segmentation/configs/ade20k/upernet_internimage_b_512_160k_ade20k.py)                | &#x2714; | 50.46/51.05      | [config](./configs/internimage/upernet_internimage_b_512_160k_ade20k.py)  |
 | InternImage-L  |   UperNet   |  640x640   | 53.9 / 54.1  |  256M  | 2526G |               [ckpt](https://huggingface.co/OpenGVLab/InternImage/resolve/main/upernet_internimage_l_640_160k_ade20k.pth) \| [cfg](segmentation/configs/ade20k/upernet_internimage_l_640_160k_ade20k.py)                | &#x2714; | 53.39/-          | [config](./configs/internimage/upernet_internimage_l_512_160k_ade20k.py)  |
 | InternImage-XL |   UperNet   |  640x640   | 55.0 / 55.3  |  368M  | 3142G |              [ckpt](https://huggingface.co/OpenGVLab/InternImage/resolve/main/upernet_internimage_xl_640_160k_ade20k.pth) \| [cfg](segmentation/configs/ade20k/upernet_internimage_xl_640_160k_ade20k.py)               | &#x2714; | 54.4/-           | [config](./configs/internimage/upernet_internimage_xl_512_160k_ade20k.py) |
-| InternImage-H  |   UperNet   |  896x896   | 59.9 / 60.3  | 1.12B  | 3566G |               [ckpt](https://huggingface.co/OpenGVLab/InternImage/resolve/main/upernet_internimage_h_896_160k_ade20k.pth) \| [cfg](segmentation/configs/ade20k/upernet_internimage_h_896_160k_ade20k.py)                | &#x2714; | 59.49/-          | [config](./configs/internimage/upernet_internimage_h_512_160k_ade20k.py)  |
+| InternImage-H  |   UperNet   |  896x896   | 59.9 / 60.3  | 1.12B  | 3566G |               [ckpt](https://huggingface.co/OpenGVLab/InternImage/resolve/main/upernet_internimage_h_896_160k_ade20k.pth) \| [cfg](segmentation/configs/ade20k/upernet_internimage_h_896_160k_ade20k.py)                | &#x2714; | 59.49/-              | [config](./configs/internimage/upernet_internimage_h_512_160k_ade20k.py)  |
 | InternImage-H  | Mask2Former |  896x896   | 62.5 / 62.9  | 1.31B  | 4635G | [ckpt](https://huggingface.co/OpenGVLab/InternImage/resolve/main/mask2former_internimage_h_896_80k_cocostuff2ade20k.pth) \| [cfg](segmentation/configs/ade20k/mask2former_internimage_h_896_80k_cocostuff2ade20k_ss.py) | &#x2716; | -/-              |                                                                           |
 
 </div>
+
 </details>
+
+## Why are the test results inconsistent with the original repository?
+
+1. **Changes in PyTorch version**
+
+   New versions of PyTorch may introduce new features and changes that may affect the training and testing results of
+   your model.
+   For example, PyTorch 1.7 introduced support for CUDA11, which may affect the performance and stability of training
+   and testing using GPUs.
+   The PyTorch 2.0 version brings new compilers and performance optimizations such as torch.compile, which may change
+   the execution method and results of models.
+
+2. **Changes in CUDA version**
+
+   CUDA is NVIDIA's GPU-accelerated computing platform, and PyTorch uses CUDA for GPU-accelerated training and testing.
+   When the CUDA version is updated, it may affect the performance and stability of GPU training and testing.
+   For example, upgrading to CUDA 11 may affect the performance of PyTorch 1.7 and above.
