@@ -52,18 +52,13 @@ mim install "mmcv>=2.0.0"
 pip install "mmsegmentation>=1.0.0"
 mim install mmdet
 ```
-**Step 2.** Install mmsegextension 
+**Step 2.** Install mmsegextension and mmsegextension-lib
 
 ```shell
 git clone https://github.com/chenller/mmsegextension.git
 cd mmsegextension
-pip install -v -e .
+bash install.sh
 # '-v' means verbose, or more output
 # '-e' means installing a project in editable mode,
 # thus any local modifications made to the code will take effect without reinstallation.
-```
-**Step 3.** Install lib 
-```shell
-cd mmsegextension/lib/MultiScaleDeformableAttention
-sh mask.sh
 ```

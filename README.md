@@ -45,7 +45,6 @@ You can still use PyTorch 1.x.
   The Config file names remain the same as in the original repository, making it easy for developers familiar with the
   original repository to get started without much hassle.
 
-
 <details>
 <summary> Addressing Key Issues </summary>
 <br>
@@ -53,7 +52,8 @@ You can still use PyTorch 1.x.
 
 - **Staying Current with Latest Models**
 
-  mmseg-extension addresses the delay in MMSegmentation's inclusion of the latest models by continuously integrating the newest research.
+  mmseg-extension addresses the delay in MMSegmentation's inclusion of the latest models by continuously integrating the
+  newest research.
 
 - **Standardizing Disparate Codebases**
 
@@ -69,11 +69,7 @@ You can still use PyTorch 1.x.
 
 </details>
 
-### TODO
 
-- [x] Support [ViT-CoMer](https://github.com/Traffic-X/ViT-CoMer) semantic segmentation
-- [x] Support [InternImage](https://github.com/OpenGVLab/InternImage) semantic segmentation
-- [x] Support [ViT-Adapter](https://github.com/czczup/ViT-Adapter) semantic segmentation
 
 ## Installation and Usage
 
@@ -86,14 +82,16 @@ You can still use PyTorch 1.x.
     - [Getting started with MMEngine](https://mmengine.readthedocs.io/en/latest/get_started/15_minutes.html)
     - [Overview of MMSegmentation](https://github.com/open-mmlab/mmsegmentation/blob/main/docs/en/overview.md)
 
-
 ## Overview of Model Zoo
 
-- [ViT-Adapter](https://github.com/czczup/ViT-Adapter)
-- [ViT-CoMer](https://github.com/Traffic-X/ViT-CoMer)
-- [InternImage](https://github.com/OpenGVLab/InternImage)
+| Name        | Year | Publication | Paper                                     | Code                                                                       |
+|-------------|------|-------------|-------------------------------------------|----------------------------------------------------------------------------|
+| ViT-Adapter | 2023 | ICLR        | [Arxiv](https://arxiv.org/abs/2205.08534) | [Code](https://github.com/czczup/ViT-Adapter)                              |
+| ViT-CoMer   | 2024 | CVPR        | [Arxiv](https://arxiv.org/abs/2403.07392) | [Code](https://github.com/Traffic-X/ViT-CoMer)                             |
+| InternImage | 2023 | CVPR        | [Arxiv](https://arxiv.org/abs/2211.05778) | [Code](https://github.com/OpenGVLab/InternImage/tree/master/segmentation)  |
+| TransNeXt   | 2024 | CVPR        | [Arxiv](https://arxiv.org/abs/2311.17132) | [Code](https://github.com/DaiShiResearch/TransNeXt/tree/main/segmentation) |
 
-### Completed work   
+### Completed Work Results
 
 <details>
 <summary> Identifier Description </summary>
@@ -192,3 +190,37 @@ You can still use PyTorch 1.x.
 
 </div>
 </details>
+
+### [TransNeXt](https://github.com/DaiShiResearch/TransNeXt/tree/main/segmentation)
+
+<details>
+<summary> TransNeXt ADE20K Semantic Segmentation using the UPerNet method </summary>
+<br>
+<div>
+
+|    Backbone     |                                                         Pretrained Model                                                          | Crop Size | Lr Schd | mIoU | mIoU (ms+flip) | #Params |                                                                          Download                                                                          |                                          Config                                           |                                                                    Log                                                                     | Support? | our mIoU (SS/MS) | our config                                                                      |
+|:---------------:|:---------------------------------------------------------------------------------------------------------------------------------:|:---------:|:-------:|:----:|:--------------:|:-------:|:----------------------------------------------------------------------------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------------------------:|----------|------------------|---------------------------------------------------------------------------------|
+| TransNeXt-Tiny  |  [ImageNet-1K](https://huggingface.co/DaiShiResearch/transnext-tiny-224-1k/resolve/main/transnext_tiny_224_1k.pth?download=true)  |  512x512  |  160K   | 51.1 |   51.5/51.7    |   59M   |  [model](https://huggingface.co/DaiShiResearch/upernet-transnext-tiny-ade/resolve/main/upernet_transnext_tiny_512x512_160k_ade20k_in1k.pth?download=true)  | [config](/segmentation/upernet/configs/upernet_transnext_tiny_512x512_160k_ade20k_ss.py)  |  [log](https://huggingface.co/DaiShiResearch/upernet-transnext-tiny-ade/blob/main/upernet_transnext_tiny_512x512_160k_ade20k_ss.log.json)  | &#x2714; | 53.02/-          | [config](./configs/transnext/upernet_transnext_base_512x512_160k_ade20k_ss.py)  |
+| TransNeXt-Small | [ImageNet-1K](https://huggingface.co/DaiShiResearch/transnext-small-224-1k/resolve/main/transnext_small_224_1k.pth?download=true) |  512x512  |  160K   | 52.2 |   52.5/52.8    |   80M   | [model](https://huggingface.co/DaiShiResearch/upernet-transnext-small-ade/resolve/main/upernet_transnext_small_512x512_160k_ade20k_in1k.pth?download=true) | [config](/segmentation/upernet/configs/upernet_transnext_small_512x512_160k_ade20k_ss.py) | [log](https://huggingface.co/DaiShiResearch/upernet-transnext-small-ade/blob/main/upernet_transnext_small_512x512_160k_ade20k_ss.log.json) | &#x2714; | 52.15/-          | [config](./configs/transnext/upernet_transnext_small_512x512_160k_ade20k_ss.py) |
+| TransNeXt-Base  |  [ImageNet-1K](https://huggingface.co/DaiShiResearch/transnext-base-224-1k/resolve/main/transnext_base_224_1k.pth?download=true)  |  512x512  |  160K   | 53.0 |   53.5/53.7    |  121M   |  [model](https://huggingface.co/DaiShiResearch/upernet-transnext-base-ade/resolve/main/upernet_transnext_base_512x512_160k_ade20k_in1k.pth?download=true)  | [config](/segmentation/upernet/configs/upernet_transnext_base_512x512_160k_ade20k_ss.py)  |  [log](https://huggingface.co/DaiShiResearch/upernet-transnext-base-ade/blob/main/upernet_transnext_base_512x512_160k_ade20k_ss.log.json)  | &#x2714; | 51.11/-          | [config](./configs/transnext/upernet_transnext_tiny_512x512_160k_ade20k_ss.py)  |
+
+* In the context of multi-scale evaluation, TransNeXt reports test results under two distinct scenarios: **interpolation
+  ** and **extrapolation** of relative position bias.
+
+</div>
+</details>
+
+<details>
+<summary> TransNeXt ADE20K Semantic Segmentation using the Mask2Former method </summary>
+<br>
+<div>
+
+|    Backbone     |                                                         Pretrained Model                                                          | Crop Size | Lr Schd | mIoU | #Params |                                                                              Download                                                                              |                                             Config                                             |                                                                       Log                                                                       | Support? | our mIoU (SS/MS) | our config                                                                       |
+|:---------------:|:---------------------------------------------------------------------------------------------------------------------------------:|:---------:|:-------:|:----:|:-------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------------------------------------------------:|----------|------------------|----------------------------------------------------------------------------------|
+| TransNeXt-Tiny  |  [ImageNet-1K](https://huggingface.co/DaiShiResearch/transnext-tiny-224-1k/resolve/main/transnext_tiny_224_1k.pth?download=true)  |  512x512  |  160K   | 53.4 |  47.5M  |  [model](https://huggingface.co/DaiShiResearch/mask2former-transnext-tiny-ade/resolve/main/mask2former_transnext_tiny_512x512_160k_ade20k_in1k.pth?download=true)  | [config](/segmentation/mask2former/configs/mask2former_transnext_tiny_160k_ade20k-512x512.py)  |  [log](https://huggingface.co/DaiShiResearch/mask2former-transnext-tiny-ade/raw/main/mask2former_transnext_tiny_512x512_160k_ade20k_in1k.json)  | &#x2714; | 53.43/-          | [config](./configs/transnext/mask2former_transnext_base_160k_ade20k-512x512.py)  |
+| TransNeXt-Small | [ImageNet-1K](https://huggingface.co/DaiShiResearch/transnext-small-224-1k/resolve/main/transnext_small_224_1k.pth?download=true) |  512x512  |  160K   | 54.1 |  69.0M  | [model](https://huggingface.co/DaiShiResearch/mask2former-transnext-small-ade/resolve/main/mask2former_transnext_small_512x512_160k_ade20k_in1k.pth?download=true) | [config](/segmentation/mask2former/configs/mask2former_transnext_small_160k_ade20k-512x512.py) | [log](https://huggingface.co/DaiShiResearch/mask2former-transnext-small-ade/raw/main/mask2former_transnext_small_512x512_160k_ade20k_in1k.json) | &#x2714; | 54.06/-          | [config](./configs/transnext/mask2former_transnext_small_160k_ade20k-512x512.py) |
+| TransNeXt-Base  |  [ImageNet-1K](https://huggingface.co/DaiShiResearch/transnext-base-224-1k/resolve/main/transnext_base_224_1k.pth?download=true)  |  512x512  |  160K   | 54.7 |  109M   |  [model](https://huggingface.co/DaiShiResearch/mask2former-transnext-base-ade/resolve/main/mask2former_transnext_base_512x512_160k_ade20k_in1k.pth?download=true)  | [config](/segmentation/mask2former/configs/mask2former_transnext_base_160k_ade20k-512x512.py)  |  [log](https://huggingface.co/DaiShiResearch/mask2former-transnext-base-ade/raw/main/mask2former_transnext_base_512x512_160k_ade20k_in1k.json)  | &#x2714; | 54.68/-          | [config](./configs/transnext/mask2former_transnext_tiny_160k_ade20k-512x512.py)  |
+
+</div>
+</details>
+
