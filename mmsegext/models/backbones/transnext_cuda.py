@@ -36,7 +36,7 @@ except pkg_resources.DistributionNotFound:
     # The following modules will not be registered as 'BACKBONES' in mmseg
     BACKBONES = Registry('Fake-BACKBONES')
 
-CUDA_NUM_THREADS = 128
+CUDA_NUM_THREADS = 1024
 
 
 class sw_qkrpb_cuda(torch.autograd.Function):

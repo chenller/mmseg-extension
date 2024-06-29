@@ -13,7 +13,7 @@ Users benefit from a consistent and streamlined training and testing process,
 significantly reducing the learning curve and enhancing productivity.
 
 The main branch works with PyTorch 2.0 or higher (we recommend PyTorch 2.3).
-You can still use PyTorch 1.x.
+You can still use PyTorch 1.x, but no testing has been conducted.
 
 ## Features and Objectives
 
@@ -69,14 +69,12 @@ You can still use PyTorch 1.x.
 
 </details>
 
-
-
 ## Installation and Usage
 
 - **Installation:** Please refer to [get_started.md](docs/readme/get_started.md) for installation.
 
-- **Usage:
-  ** [Train and test with existing models](https://github.com/open-mmlab/mmsegmentation/blob/main/docs/en/user_guides/4_train_test.md)
+- **Usage:**
+  [Train and test with existing models](https://github.com/open-mmlab/mmsegmentation/blob/main/docs/en/user_guides/4_train_test.md)
 
 - If you are not familiar with `mmseg v1.x`, please read:
     - [Getting started with MMEngine](https://mmengine.readthedocs.io/en/latest/get_started/15_minutes.html)
@@ -90,6 +88,7 @@ You can still use PyTorch 1.x.
 | ViT-CoMer   | 2024 | CVPR        | [Arxiv](https://arxiv.org/abs/2403.07392) | [Code](https://github.com/Traffic-X/ViT-CoMer)                             |
 | InternImage | 2023 | CVPR        | [Arxiv](https://arxiv.org/abs/2211.05778) | [Code](https://github.com/OpenGVLab/InternImage/tree/master/segmentation)  |
 | TransNeXt   | 2024 | CVPR        | [Arxiv](https://arxiv.org/abs/2311.17132) | [Code](https://github.com/DaiShiResearch/TransNeXt/tree/main/segmentation) |
+| UniRepLKNet | 2024 | CVPR        | [Arxiv](https://arxiv.org/abs/2311.15599) | [Code](https://github.com/ailab-cvc/unireplknet)                           |
 
 ### Completed Work Results
 
@@ -204,8 +203,8 @@ You can still use PyTorch 1.x.
 | TransNeXt-Small | [ImageNet-1K](https://huggingface.co/DaiShiResearch/transnext-small-224-1k/resolve/main/transnext_small_224_1k.pth?download=true) |  512x512  |  160K   | 52.2 |   52.5/52.8    |   80M   | [model](https://huggingface.co/DaiShiResearch/upernet-transnext-small-ade/resolve/main/upernet_transnext_small_512x512_160k_ade20k_in1k.pth?download=true) | [config](/segmentation/upernet/configs/upernet_transnext_small_512x512_160k_ade20k_ss.py) | [log](https://huggingface.co/DaiShiResearch/upernet-transnext-small-ade/blob/main/upernet_transnext_small_512x512_160k_ade20k_ss.log.json) | &#x2714; | 52.15/-          | [config](./configs/transnext/upernet_transnext_small_512x512_160k_ade20k_ss.py) |
 | TransNeXt-Base  |  [ImageNet-1K](https://huggingface.co/DaiShiResearch/transnext-base-224-1k/resolve/main/transnext_base_224_1k.pth?download=true)  |  512x512  |  160K   | 53.0 |   53.5/53.7    |  121M   |  [model](https://huggingface.co/DaiShiResearch/upernet-transnext-base-ade/resolve/main/upernet_transnext_base_512x512_160k_ade20k_in1k.pth?download=true)  | [config](/segmentation/upernet/configs/upernet_transnext_base_512x512_160k_ade20k_ss.py)  |  [log](https://huggingface.co/DaiShiResearch/upernet-transnext-base-ade/blob/main/upernet_transnext_base_512x512_160k_ade20k_ss.log.json)  | &#x2714; | 51.11/-          | [config](./configs/transnext/upernet_transnext_tiny_512x512_160k_ade20k_ss.py)  |
 
-* In the context of multi-scale evaluation, TransNeXt reports test results under two distinct scenarios: **interpolation
-  ** and **extrapolation** of relative position bias.
+* In the context of multi-scale evaluation, TransNeXt reports test results under two distinct scenarios:
+  **interpolation** and **extrapolation** of relative position bias.
 
 </div>
 </details>
@@ -220,6 +219,29 @@ You can still use PyTorch 1.x.
 | TransNeXt-Tiny  |  [ImageNet-1K](https://huggingface.co/DaiShiResearch/transnext-tiny-224-1k/resolve/main/transnext_tiny_224_1k.pth?download=true)  |  512x512  |  160K   | 53.4 |  47.5M  |  [model](https://huggingface.co/DaiShiResearch/mask2former-transnext-tiny-ade/resolve/main/mask2former_transnext_tiny_512x512_160k_ade20k_in1k.pth?download=true)  | [config](/segmentation/mask2former/configs/mask2former_transnext_tiny_160k_ade20k-512x512.py)  |  [log](https://huggingface.co/DaiShiResearch/mask2former-transnext-tiny-ade/raw/main/mask2former_transnext_tiny_512x512_160k_ade20k_in1k.json)  | &#x2714; | 53.43/-          | [config](./configs/transnext/mask2former_transnext_base_160k_ade20k-512x512.py)  |
 | TransNeXt-Small | [ImageNet-1K](https://huggingface.co/DaiShiResearch/transnext-small-224-1k/resolve/main/transnext_small_224_1k.pth?download=true) |  512x512  |  160K   | 54.1 |  69.0M  | [model](https://huggingface.co/DaiShiResearch/mask2former-transnext-small-ade/resolve/main/mask2former_transnext_small_512x512_160k_ade20k_in1k.pth?download=true) | [config](/segmentation/mask2former/configs/mask2former_transnext_small_160k_ade20k-512x512.py) | [log](https://huggingface.co/DaiShiResearch/mask2former-transnext-small-ade/raw/main/mask2former_transnext_small_512x512_160k_ade20k_in1k.json) | &#x2714; | 54.06/-          | [config](./configs/transnext/mask2former_transnext_small_160k_ade20k-512x512.py) |
 | TransNeXt-Base  |  [ImageNet-1K](https://huggingface.co/DaiShiResearch/transnext-base-224-1k/resolve/main/transnext_base_224_1k.pth?download=true)  |  512x512  |  160K   | 54.7 |  109M   |  [model](https://huggingface.co/DaiShiResearch/mask2former-transnext-base-ade/resolve/main/mask2former_transnext_base_512x512_160k_ade20k_in1k.pth?download=true)  | [config](/segmentation/mask2former/configs/mask2former_transnext_base_160k_ade20k-512x512.py)  |  [log](https://huggingface.co/DaiShiResearch/mask2former-transnext-base-ade/raw/main/mask2former_transnext_base_512x512_160k_ade20k_in1k.json)  | &#x2714; | 54.68/-          | [config](./configs/transnext/mask2former_transnext_tiny_160k_ade20k-512x512.py)  |
+
+</div>
+</details>
+
+### [UniRepLKNet](https://github.com/ailab-cvc/unireplknet)
+
+<details>
+<summary> UniRepLKNet ADE20K Semantic Segmentation </summary>
+<br>
+<div>
+
+|        name        | resolution | mIoU (ss/ms) | #params | FLOPs |                                            Weights                                            | Support? | our mIoU (SS/MS) | our config                                                                     |
+|:------------------:|:----------:|:------------:|:-------:|:-----:|:---------------------------------------------------------------------------------------------:|----------|------------------|--------------------------------------------------------------------------------|
+|   UniRepLKNet-T    |  512x512   |  48.6/49.1   |   61M   | 946G  | [ckpt](https://drive.google.com/file/d/1R2teeQt7q48EBBRbeVXShISpOmS5YHjs/view?usp=drive_link) | &#x2714; | 47.94/-          | [config](./configs/unireplknet/upernet_unireplknet_t_512_160k_ade20k.py)       |
+|   UniRepLKNet-S    |  512x512   |  50.5/51.0   |   86M   | 1036G | [ckpt](https://drive.google.com/file/d/1SBHvbK4zoPSZ827F5Sp209LYIh2T7Iew/view?usp=drive_link) | &#x2714; | -/-              | [config](./configs/unireplknet/upernet_unireplknet_s_512_160k_ade20k.py)       |
+| UniRepLKNet-S_22K  |  512x512   |  51.9/52.7   |   86M   | 1036G | [ckpt](https://drive.google.com/file/d/15dNuw34kia5qtt6UijcnutEktY05OrKH/view?usp=drive_link) | &#x2714; | -/-              | [config](./configs/unireplknet/upernet_unireplknet_s_in22k_512_160k_ade20k.py) |
+| UniRepLKNet-S_22K  |  640x640   |  52.3/52.7   |   86M   | 1618G |  [ckpt](https://drive.google.com/file/d/1WVmAQ8sKDeX0APS9Q88z4dZge31kHx2v/view?usp=sharing)   | &#x2714; | -/-              | [config](./configs/unireplknet/upernet_unireplknet_s_in22k_640_160k_ade20k.py) |   
+| UniRepLKNet-B_22K  |  640x640   |  53.5/53.9   |  130M   | 1850G | [ckpt](https://drive.google.com/file/d/1sflCn8ny-cU5Bk8yBGE3E-yIO8eECE0H/view?usp=drive_link) | &#x2714; | 52.89/-          | [config](./configs/unireplknet/upernet_unireplknet_b_in22k_640_160k_ade20k.py) |
+| UniRepLKNet-L_22K  |  640x640   |  54.5/55.0   |  254M   | 2507G | [ckpt](https://drive.google.com/file/d/1Qev75aKZY5bNAM17cLecD2OoZwKf5DA7/view?usp=drive_link) | &#x2714; | -/-              | [config](./configs/unireplknet/upernet_unireplknet_l_in22k_640_160k_ade20k.py) |
+| UniRepLKNet-XL_22K |  640x640   |  55.2/55.6   |  425M   | 3420G |  [ckpt](https://drive.google.com/file/d/1Ajwc7ZOk5eK19XX6VzgmAu2Wn0Dkb3jI/view?usp=sharing)   | &#x2716; | -/-              | -                                                                              |
+
+**NOTE:** Checkpoints have already been released on hugging face. You can download them right now
+from https://huggingface.co/DingXiaoH/UniRepLKNet/tree/main.
 
 </div>
 </details>
