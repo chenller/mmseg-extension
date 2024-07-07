@@ -89,6 +89,8 @@ You can still use PyTorch 1.x, but no testing has been conducted.
 | InternImage | 2023 | CVPR        | [Arxiv](https://arxiv.org/abs/2211.05778) | [Code](https://github.com/OpenGVLab/InternImage/tree/master/segmentation)  |
 | TransNeXt   | 2024 | CVPR        | [Arxiv](https://arxiv.org/abs/2311.17132) | [Code](https://github.com/DaiShiResearch/TransNeXt/tree/main/segmentation) |
 | UniRepLKNet | 2024 | CVPR        | [Arxiv](https://arxiv.org/abs/2311.15599) | [Code](https://github.com/ailab-cvc/unireplknet)                           |
+| BiFormer    | 2023 | CVPR        | [Arxiv](https://arxiv.org/abs/2303.08810) | [Code](https://github.com/rayleizhu/biformer)                              |
+| ConvNeXt V2 | 2023 | CVPR        | [Arxiv](https://arxiv.org/abs/2301.00808) | [Code](https://github.com/facebookresearch/convnext-v2)                    |
 
 ### Completed Work Results
 
@@ -246,3 +248,30 @@ from https://huggingface.co/DingXiaoH/UniRepLKNet/tree/main.
 </div>
 </details>
 
+### [BiFormer ](https://github.com/rayleizhu/biformer)
+
+<details>
+<summary> BiFormer Semantic Segmentation </summary>
+<br>
+<div>
+
+**NOTE:** The official code library is not open source for semantic segmentation weights. 
+This repository can load the pre training weights of the backbone network on the ImageNet-1K dataset. 
+You can find the weight in the [URL](https://github.com/rayleizhu/biformer)
+
+</div>
+</details>
+
+### [ConvNeXt V2](https://github.com/facebookresearch/convnext-v2)
+
+<details>
+<summary> ConvNeXt-V2 Semantic Segmentation </summary>
+<br>
+<div>
+
+**NOTE:** The official code library is not open source for semantic segmentation weights. 
+This repository can load the pre training weights of the backbone network on the ImageNet-1K or ImageNet-22K dataset. 
+You can find the weight in the [URL](https://github.com/facebookresearch/convnext-v2)
+
+</div>
+</details>

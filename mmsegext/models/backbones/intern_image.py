@@ -15,7 +15,7 @@ from timm.models.layers import trunc_normal_, DropPath
 from mmengine.model.weight_init import constant_init, trunc_normal_init
 # from mmseg.utils import get_root_logger
 from mmengine.logging import print_log
-from mmseg.models.builder import BACKBONES
+from mmseg.registry import MODELS as BACKBONES
 
 import torch.nn.functional as F
 

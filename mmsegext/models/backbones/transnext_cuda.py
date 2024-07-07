@@ -17,7 +17,7 @@ import torch.nn.functional as F
 from functools import partial
 from timm.models.layers import DropPath, to_2tuple, trunc_normal_
 import math
-from mmseg.models import BACKBONES
+from mmseg.registry import MODELS as BACKBONES
 from mmengine.logging import MMLogger
 from mmengine.runner.checkpoint import load_checkpoint
 import warnings

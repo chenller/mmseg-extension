@@ -16,7 +16,7 @@ from timm.models.registry import register_model
 from functools import partial
 import torch.utils.checkpoint as checkpoint
 
-from mmseg.models import BACKBONES
+from mmseg.registry import MODELS as BACKBONES
 # from mmseg.utils import get_root_logger
 from mmengine.logging import MMLogger, print_log
 from mmengine.runner.checkpoint import _load_checkpoint
