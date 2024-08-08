@@ -56,7 +56,7 @@ pip install mmdet
 ```shell
 git clone https://github.com/chenller/mmseg-extension.git
 cd mmseg-extension
-sh install.sh
+bash install.sh
 # '-v' means verbose, or more output
 # '-e' means installing a project in editable mode,
 # thus any local modifications made to the code will take effect without reinstallation.
