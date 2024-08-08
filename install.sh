@@ -12,4 +12,3 @@ cd ../../
 cd ./mmsegextlib/swattention
 python setup.py build install
 cd ../../
-
