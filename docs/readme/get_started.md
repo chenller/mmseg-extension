@@ -17,8 +17,8 @@ If you are experienced with PyTorch and have already installed it, just skip thi
 **Step 1.** Create a conda environment and activate it.
 
 ```shell
-conda create --name mmsegextension python=3.8 -y
-conda activate mmsegextension
+conda create --name mmsegext python=3.9 -y
+conda activate mmsegext
 ```
 
 **Step 2.** Install PyTorch following [official instructions](https://pytorch.org/get-started/locally/), e.g.
@@ -27,8 +27,7 @@ On GPU platforms:
 
 ```shell
 # Example
-conda install pytorch==2.3.0 torchvision==0.18.0 torchaudio==2.3.0 pytorch-cuda=12.1 -c pytorch -c nvidia
-
+conda install pytorch==2.1.1 torchvision==0.16.1 torchaudio==2.1.1 pytorch-cuda=12.1 -c pytorch -c nvidia
 ```
 
 
@@ -43,22 +42,27 @@ We recommend that users follow our best practices to install MMSegmentation. How
 ```shell
 pip install -U openmim
 mim install mmengine
-mim install "mmcv>=2.0.0"
+mim install "mmcv==2.1.0"
 ```
 
-**Step 1.** Install MMSegmentation and MMDetection.
+**Step 1.** Install `MMSegmentation` and `MMDetection`.
 
 ```shell
 pip install "mmsegmentation>=1.0.0"
-mim install mmdet
+pip install mmdet
 ```
-**Step 2.** Install mmsegextension and mmsegextension-lib
+**Step 2.** Install `mmseg-extension` and `mmseg-extension-lib`
 
 ```shell
-git clone https://github.com/chenller/mmsegextension.git
-cd mmsegextension
-bash install.sh
+git clone https://github.com/chenller/mmseg-extension.git
+cd mmseg-extension
+sh install.sh
 # '-v' means verbose, or more output
 # '-e' means installing a project in editable mode,
 # thus any local modifications made to the code will take effect without reinstallation.
+```
+**Step 3.** Install requirements
+
+```shell
+pip install timm fairscale einops ftfy regex 
 ```

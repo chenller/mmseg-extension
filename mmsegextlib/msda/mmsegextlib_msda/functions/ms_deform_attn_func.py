@@ -8,13 +8,14 @@
 
 from __future__ import absolute_import, division, print_function
 
-import MultiScaleDeformableAttention as MSDA
+
 import torch
 import torch.nn.functional as F
 from torch.autograd import Function
 from torch.autograd.function import once_differentiable
 from torch.cuda.amp import custom_bwd, custom_fwd
 
+import mmsegextlib_msda_so_MultiScaleDeformableAttention as MSDA
 
 class MSDeformAttnFunction(Function):
     @staticmethod
@@ -37,7 +38,7 @@ class MSDeformAttnFunction(Function):
     @custom_bwd
     def backward(ctx, grad_output):
         value, value_spatial_shapes, value_level_start_index, \
-        sampling_locations, attention_weights = ctx.saved_tensors
+            sampling_locations, attention_weights = ctx.saved_tensors
         grad_value, grad_sampling_loc, grad_attn_weight = \
             MSDA.ms_deform_attn_backward(
                 value, value_spatial_shapes, value_level_start_index,

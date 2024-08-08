@@ -47,7 +47,7 @@ def get_extensions():
     include_dirs = [extensions_dir]
     ext_modules = [
         extension(
-            'mmsegextlib_msda',
+            'mmsegextlib_msda_so_MultiScaleDeformableAttention',
             sources,
             include_dirs=include_dirs,
             define_macros=define_macros,
