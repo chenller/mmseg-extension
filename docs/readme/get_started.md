@@ -65,4 +65,5 @@ bash install.sh
 
 ```shell
 pip install timm fairscale einops ftfy regex 
+pip install "opencv-python<=4.9.0"
 ```

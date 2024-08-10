@@ -14,6 +14,8 @@ from mmengine.utils import mkdir_or_exist
 
 from mmseg.registry import MODELS
 
+import mmsegext
+
 
 def parse_args():
     parser = argparse.ArgumentParser(description='MMSeg benchmark a model')

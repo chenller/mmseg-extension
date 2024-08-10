@@ -18,6 +18,8 @@ from pytorch_grad_cam.utils.image import preprocess_image, show_cam_on_image
 from mmseg.apis import inference_model, init_model, show_result_pyplot
 from mmseg.utils import register_all_modules
 
+import mmsegext
+
 
 class SemanticSegmentationTarget:
     """wrap the model.

@@ -21,3 +21,5 @@ wheels/
 *.egg
 MANIFEST
 .idea/
+
+work_dirs/

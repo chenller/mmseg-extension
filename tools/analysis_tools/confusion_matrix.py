@@ -14,6 +14,7 @@ from mmseg.registry import DATASETS
 
 init_default_scope('mmseg')
 
+import mmsegext
 
 def parse_args():
     parser = argparse.ArgumentParser(

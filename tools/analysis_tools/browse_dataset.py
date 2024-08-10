@@ -8,6 +8,7 @@ from mmengine.utils import ProgressBar
 from mmseg.registry import DATASETS, VISUALIZERS
 from mmseg.utils import register_all_modules
 
+import mmsegext
 
 def parse_args():
     parser = argparse.ArgumentParser(description='Browse a dataset')

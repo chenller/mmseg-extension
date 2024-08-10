@@ -13,6 +13,8 @@ from mmseg.models import BaseSegmentor
 from mmseg.registry import MODELS
 from mmseg.structures import SegDataSample
 
+import mmsegext
+
 try:
     from mmengine.analysis import get_model_complexity_info
     from mmengine.analysis.print_helper import _format_size
@@ -35,11 +37,11 @@ def parse_args():
         nargs='+',
         action=DictAction,
         help='override some settings in the used config, the key-value pair '
-        'in xxx=yyy format will be merged into config file. If the value to '
-        'be overwritten is a list, it should be like key="[a,b]" or key=a,b '
-        'It also allows nested list/tuple values, e.g. key="[(a,b),(c,d)]" '
-        'Note that the quotation marks are necessary and that no white space '
-        'is allowed.')
+             'in xxx=yyy format will be merged into config file. If the value to '
+             'be overwritten is a list, it should be like key="[a,b]" or key=a,b '
+             'It also allows nested list/tuple values, e.g. key="[(a,b),(c,d)]" '
+             'Note that the quotation marks are necessary and that no white space '
+             'is allowed.')
     args = parser.parse_args()
     return args
 
@@ -61,7 +63,7 @@ def inference(args: argparse.Namespace, logger: MMLogger) -> dict:
     if len(args.shape) == 1:
         input_shape = (3, args.shape[0], args.shape[0])
     elif len(args.shape) == 2:
-        input_shape = (3, ) + tuple(args.shape)
+        input_shape = (3,) + tuple(args.shape)
     else:
         raise ValueError('invalid input shape')
     result = {}
@@ -97,7 +99,6 @@ def inference(args: argparse.Namespace, logger: MMLogger) -> dict:
 
 
 def main():
-
     args = parse_args()
     logger = MMLogger.get_instance(name='MMLogger')
 

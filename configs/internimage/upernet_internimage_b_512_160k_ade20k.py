@@ -29,11 +29,11 @@ model = dict(
         post_norm=True,
         with_cp=False,
         out_indices=(0, 1, 2, 3),
-        init_cfg=dict(
-            type='Pretrained',
-            checkpoint='/home/yansu/mmlabmat/segmantation/mmseg-extension-test/pretrained/internimage/internimage_b_1k_224.pth',
-            # 'https://huggingface.co/OpenGVLab/InternImage/resolve/main/internimage_b_1k_224.pth',
-        )
+        # init_cfg=dict(
+        #     type='Pretrained',
+        #     checkpoint='/path/to/internimage_b_1k_224.pth',
+        #     # 'https://huggingface.co/OpenGVLab/InternImage/resolve/main/internimage_b_1k_224.pth',
+        # )
     ),
     decode_head=dict(
         type='UPerHead',

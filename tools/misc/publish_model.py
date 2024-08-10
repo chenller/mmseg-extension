@@ -5,6 +5,8 @@ from hashlib import sha256
 
 import torch
 
+import mmsegext
+
 BLOCK_SIZE = 128 * 1024
 
 
