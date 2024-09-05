@@ -22,7 +22,9 @@ model = dict(
         kernel_sizes=None,
         with_cp=True,
         attempt_use_lk_impl=False,
-        init_cfg=dict(type='Pretrained', checkpoint=None)
+        init_cfg=dict(type='Pretrained',
+                      checkpoint="./pretrained/unireplknet/unireplknet_b_in22k_pretrain.pth",  # filepath or None
+                      )
     ),
     decode_head=dict(
         type='UPerHead',

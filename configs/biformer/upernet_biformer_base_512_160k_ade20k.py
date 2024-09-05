@@ -7,7 +7,7 @@ _base_ = [
 ]
 # backbone pretrained weight 'biformer_base_in1k.pth'
 # https://api.onedrive.com/v1.0/shares/s!AkBbczdRlZvChHI_XPhoadjaNxtO/root/content
-pretrained = './biformer_base_best.pth'
+pretrained = './pretrained/biformer/biformer_base_best.pth'
 
 data_preprocessor = dict(
     type='SegDataPreProcessor', _scope_='mmseg',

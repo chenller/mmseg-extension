@@ -6,3 +6,4 @@ from .transnext_cuda import *
 from .unireplknet import *
 from .biformer import *
 from .convnextv2 import *
+from .flash_intern_image import *

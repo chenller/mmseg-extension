@@ -1,13 +1,22 @@
 import logging
+import traceback
 from functools import partial
 
 import torch
 import torch.nn as nn
 import torch.utils.checkpoint as cp
 # from ops.modules import MSDeformAttn
-from mmsegextlib_msda.modules import MSDeformAttn
+# from mmsegextlib_msda.modules import MSDeformAttn
 from timm.models.layers import DropPath
 
+MSDeformAttn = None
+try:
+    from mmsegextlib_msda.modules import MSDeformAttn
+except ModuleNotFoundError:
+    traceback.print_exc()
+    print(""">> If you want to use this model, Please install dependency libraries 
+    from website 'https://github.com/chenller/mmseg-extension/tree/main/mmsegextlib/msda'.
+    """)
 _logger = logging.getLogger(__name__)
 
 
@@ -62,6 +71,7 @@ def deform_inputs_only_one(x, h, w):
     deform_inputs = [reference_points, spatial_shapes, level_start_index]
 
     return deform_inputs
+
 
 class ConvFFN(nn.Module):
     def __init__(self, in_features, hidden_features=None, out_features=None,

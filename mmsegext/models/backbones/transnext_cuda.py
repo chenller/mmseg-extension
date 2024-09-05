@@ -10,6 +10,7 @@ Email: daishiresearch@gmail.com
 This source code is licensed under the license found in the
 LICENSE file in the root directory of this source tree.
 '''
+import traceback
 
 import torch
 import torch.nn as nn
@@ -23,6 +24,15 @@ from mmengine.runner.checkpoint import load_checkpoint
 import warnings
 import pkg_resources
 import sys
+
+swattention = None
+try:
+    import swattention
+except ModuleNotFoundError:
+    traceback.print_exc()
+    print(""">> If you want to use this model, Please install dependency libraries 
+    from website 'https://github.com/chenller/mmseg-extension/tree/main/mmsegextlib/swattention'.
+    """)
 
 try:
     pkg_resources.get_distribution('mmsegextlib_swattention')

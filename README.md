@@ -82,15 +82,22 @@ You can still use PyTorch 1.x, but no testing has been conducted.
 
 ## Overview of Model Zoo
 
-| Name        | Year | Publication | Paper                                     | Code                                                                       |
-|-------------|------|-------------|-------------------------------------------|----------------------------------------------------------------------------|
-| ViT-Adapter | 2023 | ICLR        | [Arxiv](https://arxiv.org/abs/2205.08534) | [Code](https://github.com/czczup/ViT-Adapter)                              |
-| ViT-CoMer   | 2024 | CVPR        | [Arxiv](https://arxiv.org/abs/2403.07392) | [Code](https://github.com/Traffic-X/ViT-CoMer)                             |
-| InternImage | 2023 | CVPR        | [Arxiv](https://arxiv.org/abs/2211.05778) | [Code](https://github.com/OpenGVLab/InternImage/tree/master/segmentation)  |
-| TransNeXt   | 2024 | CVPR        | [Arxiv](https://arxiv.org/abs/2311.17132) | [Code](https://github.com/DaiShiResearch/TransNeXt/tree/main/segmentation) |
-| UniRepLKNet | 2024 | CVPR        | [Arxiv](https://arxiv.org/abs/2311.15599) | [Code](https://github.com/ailab-cvc/unireplknet)                           |
-| BiFormer    | 2023 | CVPR        | [Arxiv](https://arxiv.org/abs/2303.08810) | [Code](https://github.com/rayleizhu/biformer)                              |
-| ConvNeXt V2 | 2023 | CVPR        | [Arxiv](https://arxiv.org/abs/2301.00808) | [Code](https://github.com/facebookresearch/convnext-v2)                    |
+| Name             | Year | Publication | Paper                                     | Code                                                                       |
+|------------------|------|-------------|-------------------------------------------|----------------------------------------------------------------------------|
+| ViT-Adapter      | 2023 | ICLR        | [Arxiv](https://arxiv.org/abs/2205.08534) | [Code](https://github.com/czczup/ViT-Adapter)                              |
+| ViT-CoMer        | 2024 | CVPR        | [Arxiv](https://arxiv.org/abs/2403.07392) | [Code](https://github.com/Traffic-X/ViT-CoMer)                             |
+| TransNeXt        | 2024 | CVPR        | [Arxiv](https://arxiv.org/abs/2311.17132) | [Code](https://github.com/DaiShiResearch/TransNeXt/tree/main/segmentation) |
+| UniRepLKNet      | 2024 | CVPR        | [Arxiv](https://arxiv.org/abs/2311.15599) | [Code](https://github.com/ailab-cvc/unireplknet)                           |
+| BiFormer         | 2023 | CVPR        | [Arxiv](https://arxiv.org/abs/2303.08810) | [Code](https://github.com/rayleizhu/biformer)                              |
+| ConvNeXt V2      | 2023 | CVPR        | [Arxiv](https://arxiv.org/abs/2301.00808) | [Code](https://github.com/facebookresearch/convnext-v2)                    |
+| InternImage      | 2023 | CVPR        | [Arxiv](https://arxiv.org/abs/2211.05778) | [Code](https://github.com/OpenGVLab/InternImage/tree/master/segmentation)  |
+| FlashInternImage | 2024 | CVPR        | [Arxiv](https://arxiv.org/abs/2401.06197) | [Code](https://github.com/OpenGVLab/DCNv4)                                 |
+
+### Loss Function
+
+| Name                  | Year | Publication | Paper                                     | Code                                                                     |
+|-----------------------|------|-------------|-------------------------------------------|--------------------------------------------------------------------------|
+| Balanced Softmax Loss | 2020 | NeurIPS     | [Arxiv](https://arxiv.org/abs/2007.10740) | [Code](https://github.com/jiawei-ren/BalancedMetaSoftmax-Classification) |
 
 ### Completed Work Results
 
@@ -192,6 +199,23 @@ You can still use PyTorch 1.x, but no testing has been conducted.
 </div>
 </details>
 
+### [FlashInternImage](https://github.com/OpenGVLab/DCNv4)
+
+<details>
+<summary> FlashInternImage ADE20K Semantic Segmentation </summary>
+<br>
+<div>
+
+|      backbone      | method  | resolution | mIoU (ss/ms) |                                         Config                                         |                                                                                                         Download                                                                                                          | Support? | our mIoU (SS/MS) | our config                                                                           |
+|:------------------:|:-------:|:----------:|:------------:|:--------------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|----------|------------------|--------------------------------------------------------------------------------------|
+| FlashInternImage-T | UperNet |  512x512   | 49.3 / 50.3  | [config](./segmentation/configs/ade20k/upernet_flash_internimage_t_512_160k_ade20k.py) | [ckpt](https://huggingface.co/OpenGVLab/DCNv4/resolve/main/upernet_flash_internimage_t_512_160k_ade20k.pth) \| [log](https://huggingface.co/OpenGVLab/DCNv4/resolve/main/upernet_flash_internimage_t_512_160k_ade20k.log) | &#x2714; | -/-              | -                                                                                    | 
+| FlashInternImage-S | UperNet |  512x512   | 50.6 / 51.6  | [config](./segmentation/configs/ade20k/upernet_flash_internimage_s_512_160k_ade20k.py) | [ckpt](https://huggingface.co/OpenGVLab/DCNv4/resolve/main/upernet_flash_internimage_s_512_160k_ade20k.pth) \| [log](https://huggingface.co/OpenGVLab/DCNv4/resolve/main/upernet_flash_internimage_s_512_160k_ade20k.log) | &#x2714; | -/-              | -                                                                                    | 
+| FlashInternImage-B | UperNet |  512x512   | 52.0 / 52.6  | [config](./segmentation/configs/ade20k/upernet_flash_internimage_b_512_160k_ade20k.py) | [ckpt](https://huggingface.co/OpenGVLab/DCNv4/resolve/main/upernet_flash_internimage_b_512_160k_ade20k.pth) \| [log](https://huggingface.co/OpenGVLab/DCNv4/resolve/main/upernet_flash_internimage_s_512_160k_ade20k.log) | &#x2714; | 51.22/-          | [config](./configs/flash_internimage/upernet_flash_internimage_b_512_160k_ade20k.py) | 
+| FlashInternImage-L | UperNet |  640x640   | 55.6 / 56.0  | [config](./segmentation/configs/ade20k/upernet_flash_internimage_l_640_160k_ade20k.py) | [ckpt](https://huggingface.co/OpenGVLab/DCNv4/resolve/main/upernet_flash_internimage_l_640_160k_ade20k.pth) \| [log](https://huggingface.co/OpenGVLab/DCNv4/resolve/main/upernet_flash_internimage_l_640_160k_ade20k.log) | &#x2714; | -/-              | -                                                                                    | 
+
+</div>
+</details>
+
 ### [TransNeXt](https://github.com/DaiShiResearch/TransNeXt/tree/main/segmentation)
 
 <details>
@@ -255,8 +279,8 @@ from https://huggingface.co/DingXiaoH/UniRepLKNet/tree/main.
 <br>
 <div>
 
-**NOTE:** The official code library is not open source for semantic segmentation weights. 
-This repository can load the pre training weights of the backbone network on the ImageNet-1K dataset. 
+**NOTE:** The official code library is not open source for semantic segmentation weights.
+This repository can load the pre training weights of the backbone network on the ImageNet-1K dataset.
 You can find the weight in the [URL](https://github.com/rayleizhu/biformer)
 
 </div>
@@ -269,8 +293,8 @@ You can find the weight in the [URL](https://github.com/rayleizhu/biformer)
 <br>
 <div>
 
-**NOTE:** The official code library is not open source for semantic segmentation weights. 
-This repository can load the pre training weights of the backbone network on the ImageNet-1K or ImageNet-22K dataset. 
+**NOTE:** The official code library is not open source for semantic segmentation weights.
+This repository can load the pre training weights of the backbone network on the ImageNet-1K or ImageNet-22K dataset.
 You can find the weight in the [URL](https://github.com/facebookresearch/convnext-v2)
 
 </div>
