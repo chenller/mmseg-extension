@@ -1,6 +1,7 @@
 from .models import *
 from .engine import *
 from .datasets import *
+from .evaluation import *
 import mmcv
 import mmengine
 

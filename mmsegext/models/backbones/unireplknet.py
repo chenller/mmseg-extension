@@ -468,7 +468,8 @@ class UniRepLKNet(nn.Module):
 
         last_channels = dims[-1]
 
-        self.for_pretrain = init_cfg is None
+        # self.for_pretrain = init_cfg is None  # bug
+        self.for_pretrain = False
         self.for_downstream = not self.for_pretrain  # there may be some other scenarios
         if self.for_downstream:
             assert num_classes is None
@@ -529,11 +530,8 @@ class UniRepLKNet(nn.Module):
                     print_log(err_msg)
 
         logger = MMLogger.get_current_instance()
-        assert self.init_cfg is not None
-        ckpt_path = self.init_cfg['checkpoint']
-        if ckpt_path is None:
-            print_log('================ Note: init_cfg is provided but I got no init ckpt path, so skip initialization')
-        else:
+        if self.init_cfg is not None:
+            ckpt_path = self.init_cfg['checkpoint']
             ckpt = _load_checkpoint(ckpt_path, logger=logger, map_location='cpu')
             if 'state_dict' in ckpt:
                 _state_dict = ckpt['state_dict']
